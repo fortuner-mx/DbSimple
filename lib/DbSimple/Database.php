@@ -507,8 +507,8 @@ abstract class DbSimple_Database extends DbSimple_LastError
             /sx';
             $m = null;
             preg_match($re, $cache_params, $m);
-            $ttl = (isset($m[3])?$m[3]:0)
-                 + (isset($m[2])?$m[2]:0) * 60
+            $ttl = (isset($m[3]) && is_numeric($m[3]) ? $m[3] : 0)
+                 + (isset($m[2]) && is_numeric($m[2]) ? $m[2] : 0) * 60
                  + (isset($m[1]) && is_numeric($m[1]) ? $m[1] : 0) * 3600;
             // Cutting out time param - now there are just fields for uniqKey or nothing
             $cache_params = trim(preg_replace($re, '', $cache_params, 1));
